@@ -3,11 +3,15 @@
  */
 package cn.mazekkkk.jeesite.modules.gen.web;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import cn.mazekkkk.jeesite.common.persistence.Page;
 import cn.mazekkkk.jeesite.common.utils.StringUtils;
+import cn.mazekkkk.jeesite.common.web.BaseController;
+import cn.mazekkkk.jeesite.modules.gen.entity.GenScheme;
 import cn.mazekkkk.jeesite.modules.gen.service.GenSchemeService;
+import cn.mazekkkk.jeesite.modules.gen.service.GenTableService;
+import cn.mazekkkk.jeesite.modules.gen.util.GenUtils;
+import cn.mazekkkk.jeesite.modules.sys.entity.User;
+import cn.mazekkkk.jeesite.modules.sys.utils.UserUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,13 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import cn.mazekkkk.jeesite.common.persistence.Page;
-import cn.mazekkkk.jeesite.common.web.BaseController;
-import cn.mazekkkk.jeesite.modules.sys.entity.User;
-import cn.mazekkkk.jeesite.modules.sys.utils.UserUtils;
-import cn.mazekkkk.jeesite.modules.gen.entity.GenScheme;
-import cn.mazekkkk.jeesite.modules.gen.service.GenTableService;
-import cn.mazekkkk.jeesite.modules.gen.util.GenUtils;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * 生成方案Controller
@@ -66,7 +65,7 @@ public class GenSchemeController extends BaseController {
 	@RequestMapping(value = "form")
 	public String form(GenScheme genScheme, Model model) {
 		if (StringUtils.isBlank(genScheme.getPackageName())){
-			genScheme.setPackageName("com.thinkgem.jeesite.modules");
+			genScheme.setPackageName("cn.mazekkkk.jeesite.modules");
 		}
 //		if (StringUtils.isBlank(genScheme.getFunctionAuthor())){
 //			genScheme.setFunctionAuthor(UserUtils.getUser().getName());
